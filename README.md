@@ -13,7 +13,7 @@ The following are typical workflows for API development and testing
 * **Development of a new API**
 * **Integration testing at API-level**
 
-For more details about the problem please go to the `restassured_same-response-as_keycloak` repository
+For more details about the problem please go to repository [`restassured_same-response-as_keycloak`](https://github.com/raketensilo/restassured_same-response-as_keycloak)
 
 ### (II) A solution attempt with JMeter
 
@@ -33,17 +33,30 @@ Versions used (other versions may differ)
 * Download the app `Apache JMeter 5.0` or higher from [https://jmeter.apache.org/](https://jmeter.apache.org/download_jmeter.cgi)
 * Install JMeter on your system
 
-#### 3. How to get started
+#### 3. Import JAR and start JMeter
 1. Copy the JAR-file `jar/jmeter-sameresponseas-0.1.jar` from this repository to the to directory where you have installed JMeter with destination `apache-jmeter-5.0/lib/`
 1. Run JMeter either via `apache-jmeter-5.0/bin/jmeter.bat` or `apache-jmeter-5.0/bin/jmeter.sh` depending on your platform
+
+#### 4. Open the `keycloakRealmsRolesUsers` JMeter project
 1. Inside JMeter, go to `File > Open` and select `jmx/keycloakRealmsRolesUsers.jmx` and open it
 1. Click on `kc1.properties` and edit the `basePath` to a folder on your system that will be used by JMeter as workspace
 
-#### 4. Use Docker to start 2 Keycloak server
+#### 5. Use Docker to start 2 Keycloak server
 * make sure you have `docker` installed
 * go into the `docker` subfolder of this repository and run `docker-compose up` to start 2 docker containers each containing a keycloak server
 
 ### (IV) Usage instructions
-* Inside JMeter click on `Start`
+#### 1. Test example
+![](./_images/ListOfRoles/1-request.png)
 
-**... TO BE CONTINUED ...**
+![](./_images/ListOfRoles/2-responseAssertion.png)
+
+![](./_images/ListOfRoles/4-responseAssertionResult.png)
+#### 2. Run group of tests against kc1 (Keycloak 1) to record expected responses
+![](./_images/test-run/kc1a.png)
+
+![](./_images/test-run/kc1b.png)
+#### 3. Re-run group of tests against kc2 to compare actual and expected response
+![](./_images/test-run/kc2a.png)
+
+![](./_images/test-run/kc2b.png)
